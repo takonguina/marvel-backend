@@ -12,6 +12,10 @@ app.use(express.json());
 app.use(cors());
 app.use("/auth", authRoutes);
 
+app.all("*", (req, res) => {
+  res.status(404).json({ messahe: "This route does not exist" });
+});
+
 app.listen(process.env.PORT, () => {
   console.log("Server started 🚀");
 });
