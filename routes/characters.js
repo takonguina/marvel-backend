@@ -1,4 +1,4 @@
-const { default: axios } = require("axios");
+const axios = require("axios");
 const express = require("express");
 const router = express.Router();
 require("dotenv").config();
@@ -28,7 +28,6 @@ router.post("/:id", async (req, res) => {
     const character = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/character/${id}?apiKey=${process.env.API_KEY}`
     );
-    console.log(character.data);
     res.json(character.data);
   } catch (error) {
     res.status(500).json({ message: error.message });
