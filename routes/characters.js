@@ -21,4 +21,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const character = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/character/${id}?apiKey=${process.env.API_KEY}`
+    );
+    console.log(character.data);
+    res.json(character.data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;
