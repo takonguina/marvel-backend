@@ -10,10 +10,9 @@ router.post("/", async (req, res) => {
         process.env.API_KEY
       }${title ? `&title=${title}` : ""}${skip ? `&skip=${skip}` : ""}`
     );
-    console.log(response);
-    res.json(response.data);
+    return res.json(response.data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 });
 
@@ -23,9 +22,9 @@ router.get("/:characterId", async (req, res) => {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics/${characterId}?apiKey=${process.env.API_KEY}`
     );
-    res.json(response.data);
+    return res.json(response.data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 });
 

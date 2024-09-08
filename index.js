@@ -7,6 +7,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const charactersRoutes = require("./routes/characters");
 const comicsRoutes = require("./routes/comics");
+const favoriteRoutes = require("./routes/favorite");
 
 mongoose.connect(process.env.MONGOOSE_URI);
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/auth", authRoutes);
 app.use("/characters", charactersRoutes);
 app.use("/comics", comicsRoutes);
+app.use("/favorite", favoriteRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).json({ message: "This route does not exist" });
